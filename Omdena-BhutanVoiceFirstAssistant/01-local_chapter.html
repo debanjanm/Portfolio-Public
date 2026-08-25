@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CivicAI Sprint — Participant Reference Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111827;
+  --ink-2: #374151;
+  --ink-3: #6B7280;
+  --ink-4: #9CA3AF;
+  --rule: #E5E7EB;
+  --rule-strong: #D1D5DB;
+  --bg: #FAFAF9;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F3F4F6;
+  --accent: #0F4C81;
+  --accent-light: #EBF3FC;
+  --accent-text: #0D3F6E;
+  --t1: #1D4ED8; --t1l: #EFF6FF; --t1t: #1e40af;
+  --t2: #7C3AED; --t2l: #F5F3FF; --t2t: #5b21b6;
+  --t3: #DB2777; --t3l: #FDF2F8; --t3t: #9d174d;
+  --t4: #D97706; --t4l: #FFFBEB; --t4t: #92400e;
+  --t5: #059669; --t5l: #ECFDF5; --t5t: #065f46;
+  --serif: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --radius: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; font-size: 13px; }
+  .page-break { page-break-before: always; }
+  .team-block { page-break-inside: avoid; }
+  header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+header {
+  background: var(--accent);
+  color: white;
+  padding: 3rem 2rem 2.5rem;
+}
+.header-inner { max-width: 900px; margin: 0 auto; }
+.doc-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.8rem;
+}
+header h1 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+.header-sub {
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+  font-size: 1rem;
+  margin-bottom: 1.6rem;
+}
+.header-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  font-family: var(--mono);
+}
+
+.notice {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-light);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 2rem 0;
+  font-size: 0.88rem;
+  color: var(--accent-text);
+}
+.notice strong { font-weight: 600; display: block; margin-bottom: 0.2rem; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin: 2.8rem 0 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.leadership-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 600px) { .leadership-row { grid-template-columns: 1fr; } }
+
+.lead-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+}
+.lead-card .role {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ink-4);
+  margin-bottom: 0.3rem;
+}
+.lead-card .name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.lead-card .desc {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.lead-card.main-lead {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  grid-column: 1 / -1;
+}
+.lead-card.main-lead .name { color: var(--accent-text); font-size: 1.05rem; }
+.lead-card.main-lead .role { color: var(--accent); }
+
+.sprint-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.sprint-table th {
+  background: var(--ink);
+  color: white;
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-align: left;
+  padding: 0.65rem 1rem;
+  font-family: var(--mono);
+  letter-spacing: 0.5px;
+}
+.sprint-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.sprint-table tr:last-child td { border-bottom: none; }
+.sprint-table tr:nth-child(even) td { background: var(--bg-subtle); }
+.sprint-table .w-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.sprint-table .del {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  margin-top: 0.2rem;
+}
+
+.team-block {
+  background: var(--bg-card);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.team-header {
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.team-number {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.team-header-text h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
+.team-header-text p { font-size: 0.83rem; color: var(--ink-3); font-weight: 300; }
+
+.team-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+@media (max-width: 680px) { .team-body { grid-template-columns: 1fr; } }
+
+.team-col { padding: 1.1rem 1.4rem; }
+.team-col + .team-col { border-left: 1px solid var(--rule); }
+@media (max-width: 680px) { .team-col + .team-col { border-left: none; border-top: 1px solid var(--rule); } }
+
+.col-label {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 0.7rem;
+}
+
+.lead-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.45rem; }
+.lead-marker { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.lead-name { font-weight: 500; font-size: 0.88rem; }
+.lead-role-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+}
+
+.member-list { display: flex; flex-direction: column; gap: 0.22rem; }
+.member-item {
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  padding: 0.18rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.member-item:last-child { border-bottom: none; }
+.member-num {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--ink-4);
+  min-width: 18px;
+}
+.bhu-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  padding: 0.08rem 0.35rem;
+  border-radius: 3px;
+  background: #FFF7ED;
+  color: #C2410C;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.week-row { margin-bottom: 1rem; }
+.week-row:last-child { margin-bottom: 0; }
+.week-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed var(--rule-strong);
+}
+.task-item {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-bottom: 0.28rem;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+.task-dash { color: var(--ink-4); flex-shrink: 0; font-family: var(--mono); margin-top: 1px; }
+
+.kpi-strip {
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--rule);
+  padding: 0.75rem 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.kpi-label {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-4);
+  white-space: nowrap;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.kpi-text { font-size: 0.82rem; color: var(--ink-2); line-height: 1.5; }
+
+.mtg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+  background: var(--bg-card);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.mtg-table th {
+  background: var(--bg-subtle);
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.mtg-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-2);
+}
+.mtg-table tr:last-child td { border-bottom: none; }
+.mtg-type {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+.mtg-all { background: #EFF6FF; color: #1D4ED8; }
+.mtg-team { background: #F5F3FF; color: #6D28D9; }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
+.tool-item {
+  background: var(--bg-card);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+}
+.tool-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.15rem; }
+.tool-use { font-size: 0.78rem; color: var(--ink-3); }
+.tool-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  padding: 0.12rem 0.4rem;
+  border-radius: 3px;
+  background: var(--bg-subtle);
+  color: var(--ink-3);
+  margin-bottom: 0.35rem;
+}
+
+.exp-list { list-style: none; counter-reset: exp-counter; }
+.exp-list li {
+  counter-increment: exp-counter;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.exp-list li:last-child { border-bottom: none; }
+.exp-list li::before {
+  content: counter(exp-counter, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-4);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.exp-list li strong { font-weight: 600; display: block; font-size: 0.88rem; margin-bottom: 0.1rem; }
+.exp-list li span { font-size: 0.82rem; color: var(--ink-3); }
+
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  margin-top: 3rem;
+}
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+.print-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.6rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+.print-btn {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--ink-3);
+  transition: all 0.15s;
+}
+.print-btn:hover { background: var(--bg-subtle); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <button class="print-btn" onclick="window.print()">&#128438; Print / Save PDF</button>
+</div>
+
+<header>
+  <div class="header-inner">
+    <p class="doc-label">Participant Reference Guide — Internal Document</p>
+    <h1>Project Sprint<br>Team &amp; Responsibility Guide</h1>
+    <p class="header-sub">Public Service Assistant — 4-Week Exploration Sprint · April 2026</p>
+    <div class="header-chips">
+      <span class="chip">65 participants</span>
+      <span class="chip">4 sub-teams</span>
+      <span class="chip">4 weeks</span>
+      <span class="chip">Bhutan · India · Nepal · Egypt · USA · and more</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="notice">
+  <strong>How to use this document</strong>
+  Find your name, note your team number and team lead, read your team's weekly tasks, and keep this as your reference throughout the sprint. This is a living guide — updates will be shared via the group channel if anything changes. <em>Bhutanese participants are marked with an orange BHU tag.</em>
+</div>
+
+<!-- ── LEADERSHIP ── -->
+<p class="section-label">Project Leadership</p>
+
+<div class="notice">
+  <strong>Project leads</strong>
+  This sprint is run collectively by eight Sub Team leads. All decisions on direction, deliverables, and Phase 2 are made together. Escalate any unresolved team blockers to the leads via the group channel.
+</div>
+
+<div class="leadership-row">
+  <div class="lead-card">
+    <div class="role">Team 1 Lead — Research &amp; User Analysis</div>
+    <div class="name">William Green &amp; Tim Hayes</div>
+    <div class="desc">Responsible for problem definition, user journey maps, and use case shortlist. Coordinates research inputs with all other teams.</div>
+  </div>
+  <div class="lead-card">
+    <div class="role">Team 2 Lead — Conversation Design</div>
+    <div class="name">Mark Turyahabwa &amp; Dr. Mohammad Hamdy</div>
+    <div class="desc">Owns all conversation flow design. Ensures flows are grounded in real user research from Team 1. Presents design review at Week 2 All-Hands.</div>
+  </div>
+  <div class="lead-card">
+    <div class="role">Team 3 Lead — Voice &amp; Chat Prototyping</div>
+    <div class="name">Mir Tahmid Hossain &amp; Sagar Panchal</div>
+    <div class="desc">Drives the technical prototype. Coordinates with Teams 2 and 4 to integrate flows and agent logic. Runs Week 3 Demo Day prototype.</div>
+  </div>
+  <div class="lead-card">
+    <div class="role">Team 4 Lead — AI Agents &amp; Workflow</div>
+    <div class="name">Divyanshu Singh &amp; Ian Gabriel Fernandez</div>
+    <div class="desc">Owns agent pipeline design and request classification experiments. Compiles the final Feasibility Report from all team submissions.</div>
+  </div>
+</div>
+
+<!-- ── SPRINT TIMELINE ── -->
+<p class="section-label">Sprint Timeline &amp; Deliverables</p>
+
+<table class="sprint-table">
+  <thead>
+    <tr>
+      <th style="width:90px;">Phase</th>
+      <th style="width:100px;">When</th>
+      <th>Focus</th>
+      <th>What gets delivered</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="w-badge" style="background:#EFF6FF;color:#1D4ED8;">Week 1</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--ink-3);">Days 1–7</td>
+      <td><strong style="font-weight:600;">Problem Understanding</strong><br><span class="del">Understand before building. No code this week.</span></td>
+      <td>Problem Definition doc · User Journey Map · Use Case Shortlist · Feasibility Hypotheses</td>
+    </tr>
+    <tr>
+      <td><span class="w-badge" style="background:#F5F3FF;color:#6D28D9;">Week 2</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--ink-3);">Days 8–14</td>
+      <td><strong style="font-weight:600;">Solution Design</strong><br><span class="del">Turn research into concrete flows and experiment plans.</span></td>
+      <td>Conversation Flow Drafts · Agent Workflow Concepts · Experiment Plan · Technical Approach Doc</td>
+    </tr>
+    <tr>
+      <td><span class="w-badge" style="background:#FDF2F8;color:#DB2777;">Week 3</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--ink-3);">Days 15–21</td>
+      <td><strong style="font-weight:600;">Prototyping &amp; Testing</strong><br><span class="del">Build small, test fast, evaluate honestly.</span></td>
+      <td>Working Prototype · Classification Experiment Results · Demo Day Presentation · Evaluation Notes</td>
+    </tr>
+    <tr>
+      <td><span class="w-badge" style="background:#ECFDF5;color:#059669;">Week 4</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--ink-3);">Days 12–28</td>
+      <td><strong style="font-weight:600;">Validation &amp; Wrap-up</strong><br><span class="del">Synthesise learnings, select the path forward.</span></td>
+      <td>Feasibility Report · Validated Use Case · Selected Tech Approach · Phase 2 Roadmap</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ── TEAM 1 ── -->
+<p class="section-label">Team Breakdown</p>
+
+<div class="team-block">
+  <div class="team-header">
+    <span class="team-number" style="background:var(--t1l);color:var(--t1t);">TEAM 01</span>
+    <div class="team-header-text">
+      <h2 style="color:var(--t1);">Research &amp; User Analysis</h2>
+      <p>Understand the real friction citizens face before anyone writes a single line of code.</p>
+    </div>
+  </div>
+  <div class="team-body">
+    <div class="team-col">
+      <p class="col-label">Leads</p>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t1);"></span>
+        <span class="lead-name">William Green</span>
+        <span class="lead-role-tag" style="background:var(--t1l);color:var(--t1t);">Lead</span>
+      </div>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t1);"></span>
+        <span class="lead-name">Tim Hayes</span>
+        <span class="lead-role-tag" style="background:var(--t1l);color:var(--t1t);">Lead</span>
+      </div>
+      <p class="col-label" style="margin-top:1.2rem;">Members · 15</p>
+      <div class="member-list">
+        <div class="member-item"><span class="member-num">01</span>Himanshu Pandey</div>
+        <div class="member-item"><span class="member-num">02</span>Neelakshi Joshi</div>
+        <div class="member-item"><span class="member-num">03</span>Pratibha Kambi</div>
+        <div class="member-item"><span class="member-num">04</span>Zyani Chaimaa</div>
+        <div class="member-item"><span class="member-num">05</span>Jyoti Singh</div>
+        <div class="member-item"><span class="member-num">06</span>Yamkela Matolengwe</div>
+        <div class="member-item"><span class="member-num">07</span>Anup Dhakal</div>
+        <div class="member-item"><span class="member-num">08</span>Loka Raj Ghimire</div>
+        <div class="member-item"><span class="member-num">09</span>Arshiya Shaik</div>
+        <div class="member-item"><span class="member-num">10</span>Pallavi Chandanshive</div>
+        <div class="member-item"><span class="member-num">11</span>Abilasha Rajmohan</div>
+        <div class="member-item"><span class="member-num">12</span>Tenzin Tobgay<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">13</span>Tshering Choden<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">14</span>T Zangmo<span class="bhu-tag">BHU</span></div>
+      </div>
+    </div>
+    <div class="team-col">
+      <p class="col-label">Weekly Tasks &amp; What You Will Learn</p>
+      <div class="week-row">
+        <p class="week-title">Week 1 — Problem Understanding</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Interview or survey 3+ people about a specific public service they struggled with. Document the pain points.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Map a step-by-step user journey for at least 2 service scenarios (e.g. applying for a permit, accessing health info).</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Write a one-page Problem Definition document. Keep a running log of everything your team did this week — decisions made, methods used, findings.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><em>You will learn:</em> How to conduct lightweight user research and structure problem statements professionally.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 2 — Support Design</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Share user personas and journey maps with Team 2 to ground their conversation flows in real data.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Validate the two selected use cases. Document which is most realistic and why.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 3 — Evaluation Support</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Review prototype flows against your original user journeys. Note gaps and mismatches.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Produce a one-page "Research vs Prototype" gap analysis and add it to your team's running documentation.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 4 — Write Your Section of the Final Report</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Write the <strong style="font-weight:600;">"User Needs &amp; Research Findings"</strong> section of the Feasibility Report. Submit to Team 4 (report leads) by Day 20.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Compile all your team's weekly notes into a clean document. This is your team's full contribution record.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Recommend 1 use case for Phase 2 with a brief justification.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-strip">
+    <span class="kpi-label">KPI</span>
+    <span class="kpi-text">Problem Definition doc + User Journey Map submitted. At least 2 validated use cases documented by Day 10. Team documentation log updated every week.</span>
+  </div>
+</div>
+
+<!-- ── TEAM 2 ── -->
+<div class="team-block">
+  <div class="team-header">
+    <span class="team-number" style="background:var(--t2l);color:var(--t2t);">TEAM 02</span>
+    <div class="team-header-text">
+      <h2 style="color:var(--t2);">Conversation Design</h2>
+      <p>Design the language and logic of how the AI assistant communicates with citizens.</p>
+    </div>
+  </div>
+  <div class="team-body">
+    <div class="team-col">
+      <p class="col-label">Leads</p>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t2);"></span>
+        <span class="lead-name">Mark Turyahabwa</span>
+        <span class="lead-role-tag" style="background:var(--t2l);color:var(--t2t);">Lead</span>
+      </div>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t2);"></span>
+        <span class="lead-name">Dr. Mohammad Hamdy</span>
+        <span class="lead-role-tag" style="background:var(--t2l);color:var(--t2t);">Lead</span>
+      </div>
+      <p class="col-label" style="margin-top:1.2rem;">Members · 14</p>
+      <div class="member-list">
+        <div class="member-item"><span class="member-num">01</span>Jyoti Bavne</div>
+        <div class="member-item"><span class="member-num">02</span>Pranjal Jain</div>
+        <div class="member-item"><span class="member-num">03</span>Alamin Musa Magaga</div>
+        <div class="member-item"><span class="member-num">04</span>Medha Manoj Panikkasseri</div>
+        <div class="member-item"><span class="member-num">05</span>Roshan Chhetri</div>
+        <div class="member-item"><span class="member-num">06</span>Ayush Verma</div>
+        <div class="member-item"><span class="member-num">07</span>Yasser Arbid</div>
+        <div class="member-item"><span class="member-num">08</span>Sukhada Kulkarni</div>
+        <div class="member-item"><span class="member-num">09</span>Amy Chong</div>
+        <div class="member-item"><span class="member-num">10</span>Martin Thuriaux</div>
+        <div class="member-item"><span class="member-num">11</span>YY Chiew</div>
+        <div class="member-item"><span class="member-num">12</span>Tenzin Chophel<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">13</span>Sundra Bomjan<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">14</span>Namgay Thinley Wangmo<span class="bhu-tag">BHU</span></div>
+      </div>
+    </div>
+    <div class="team-col">
+      <p class="col-label">Weekly Tasks &amp; What You Will Learn</p>
+      <div class="week-row">
+        <p class="week-title">Week 1 — Research Input</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Study Team 1's problem definition. Map what types of questions users will ask the assistant.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Research examples of chatbot conversation flows for government or civic services.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Start a team log: one short entry per session covering what you explored and what you decided.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><em>You will learn:</em> How intent mapping works and how to structure dialogue trees for non-technical users.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 2 — Core Design Work</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Design 3 complete conversation flows: opening, service query handling, and fallback/error paths.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Define user intents and entities (key info the bot needs: name, service type, etc.).</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Present flows at the Week 2 All-Hands for feedback. Revise based on input and document changes.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 3 — Iteration</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Work closely with Team 3 to ensure the prototype reflects your conversation design.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Rewrite any flows that break during prototype testing. Log revision rationale in your team doc.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 4 — Write Your Section of the Final Report</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Write the <strong style="font-weight:600;">"Conversation Design"</strong> section for the Feasibility Report. Submit to Team 4 (report leads) by Day 20.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Compile all weekly notes into a final team documentation package.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Recommend the best dialogue approach to carry into Phase 2.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-strip">
+    <span class="kpi-label">KPI</span>
+    <span class="kpi-text">3 conversation flow drafts reviewed and iterated at least once by end of Week 2. Team documentation log maintained throughout. Zero placeholder flows in the final submission.</span>
+  </div>
+</div>
+
+<!-- ── TEAM 3 ── -->
+<div class="team-block">
+  <div class="team-header">
+    <span class="team-number" style="background:var(--t3l);color:var(--t3t);">TEAM 03</span>
+    <div class="team-header-text">
+      <h2 style="color:var(--t3);">Voice &amp; Chat Prototyping</h2>
+      <p>Bring the conversation designs to life through working, testable prototypes.</p>
+    </div>
+  </div>
+  <div class="team-body">
+    <div class="team-col">
+      <p class="col-label">Leads</p>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t3);"></span>
+        <span class="lead-name">Mir Tahmid Hossain</span>
+        <span class="lead-role-tag" style="background:var(--t3l);color:var(--t3t);">Lead</span>
+      </div>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t3);"></span>
+        <span class="lead-name">Sagar Panchal</span>
+        <span class="lead-role-tag" style="background:var(--t3l);color:var(--t3t);">Lead</span>
+      </div>
+      <p class="col-label" style="margin-top:1.2rem;">Members · 14</p>
+      <div class="member-list">
+        <div class="member-item"><span class="member-num">01</span>Maria Rahman</div>
+        <div class="member-item"><span class="member-num">02</span>Avin Joseph</div>
+        <div class="member-item"><span class="member-num">03</span>Giusseppe Marchan</div>
+        <div class="member-item"><span class="member-num">04</span>Thant Htoo San</div>
+        <div class="member-item"><span class="member-num">05</span>Min Li</div>
+        <div class="member-item"><span class="member-num">06</span>Avik Bhadra</div>
+        <div class="member-item"><span class="member-num">07</span>Faiz Ahmed</div>
+        <div class="member-item"><span class="member-num">08</span>Vaibhavi Kamble</div>
+        <div class="member-item"><span class="member-num">09</span>Dhananjay Sharma</div>
+        <div class="member-item"><span class="member-num">10</span>Sruthi S Menon</div>
+        <div class="member-item"><span class="member-num">11</span>Romdhani Soumaya</div>
+        <div class="member-item"><span class="member-num">12</span>Shiva Lal Acharja<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">13</span>Sonam Darjay<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">14</span>Leknath Ghalley<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">15</span>Pema Euthpyel Dema<span class="bhu-tag">BHU</span></div>
+
+      </div>
+    </div>
+    <div class="team-col">
+      <p class="col-label">Weekly Tasks &amp; What You Will Learn</p>
+      <div class="week-row">
+        <p class="week-title">Week 1 — Tool Selection</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Evaluate 2–3 prototyping tools (e.g. Voiceflow, Botpress, Streamlit + OpenAI API). Compare and decide as a team.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Set up a shared repo or workspace. Ensure all members can access and contribute.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Start a team log: document the tool comparison, your final choice, and why.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><em>You will learn:</em> How to evaluate and select development tools; basic chatbot and voice interface architecture.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 2 — First Build</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Implement the first working chatbot draft using Team 2's conversation flows.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Run 5 internal test sessions. Log every failure — document what breaks and why.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><em>You will learn:</em> How to integrate LLM APIs; prompt engineering basics; testing methodology for AI interfaces.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 3 — Demo-Ready</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Polish the prototype to demo quality. Prepare a 5-minute live walkthrough for Demo Day.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>If time allows: run one voice interaction experiment (even a simple speech-to-text input test counts).</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Collect structured feedback from all 4 teams using a simple form.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 4 — Write Your Section of the Final Report</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Write the <strong style="font-weight:600;">"Prototype &amp; Testing"</strong> section of the Feasibility Report — tools used, how to run the prototype, known limitations, failure logs. Submit to Team 4 by Day 20.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Submit code + notes to the shared repo. Recommend the tech stack for Phase 2.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Compile all weekly logs into a final team documentation package.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-strip">
+    <span class="kpi-label">KPI</span>
+    <span class="kpi-text">At least 1 working voice or chat prototype demonstrated live at Week 3 Demo Day (Day 15). Failure logs from at least 5 internal test sessions documented by the team.</span>
+  </div>
+</div>
+
+<!-- ── TEAM 4 ── -->
+<div class="team-block">
+  <div class="team-header">
+    <span class="team-number" style="background:var(--t4l);color:var(--t4t);">TEAM 04</span>
+    <div class="team-header-text">
+      <h2 style="color:var(--t4);">AI Agents &amp; Workflow</h2>
+      <p>Build the logic that classifies requests and routes them to the right service — the brain behind the interface. Also responsible for compiling the final Feasibility Report from all team submissions.</p>
+    </div>
+  </div>
+  <div class="team-body">
+    <div class="team-col">
+      <p class="col-label">Leads</p>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t4);"></span>
+        <span class="lead-name">Divyanshu Singh</span>
+        <span class="lead-role-tag" style="background:var(--t4l);color:var(--t4t);">Lead</span>
+      </div>
+      <div class="lead-row">
+        <span class="lead-marker" style="background:var(--t4);"></span>
+        <span class="lead-name">Ian Gabriel Fernandez</span>
+        <span class="lead-role-tag" style="background:var(--t4l);color:var(--t4t);">Lead</span>
+      </div>
+      <p class="col-label" style="margin-top:1.2rem;">Members · 14</p>
+      <div class="member-list">
+        <div class="member-item"><span class="member-num">01</span>Debanjan Mondal</div>
+        <div class="member-item"><span class="member-num">02</span>Shekar Dadron</div>
+        <div class="member-item"><span class="member-num">03</span>Ahmed Hossam</div>
+        <div class="member-item"><span class="member-num">04</span>Gabriel Mwendwa</div>
+        <div class="member-item"><span class="member-num">05</span>Abdelrahman Abouzid</div>
+        <div class="member-item"><span class="member-num">06</span>Hitesh Kumar</div>
+        <div class="member-item"><span class="member-num">07</span>Venkata Dinesh Reddy</div>
+        <div class="member-item"><span class="member-num">08</span>Lakshmi Pradeep</div>
+        <div class="member-item"><span class="member-num">09</span>Priyanshi Jain</div>
+        <div class="member-item"><span class="member-num">10</span>Michelle Obianwu</div>
+        <div class="member-item"><span class="member-num">11</span>Lakeisha Gurung</div>
+        <div class="member-item"><span class="member-num">12</span>Chabsel Jungney Wangchuk<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">13</span>Tandin Kelzang<span class="bhu-tag">BHU</span></div>
+        <div class="member-item"><span class="member-num">14</span>Sonam Pelzom<span class="bhu-tag">BHU</span></div>
+      </div>
+    </div>
+    <div class="team-col">
+      <p class="col-label">Weekly Tasks &amp; What You Will Learn</p>
+      <div class="week-row">
+        <p class="week-title">Week 1 — Scoping the Agent</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Define the categories of service requests the agent should handle (e.g. "passport request", "health info", "NOC").</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Sketch a decision tree on paper first: what does the agent do at each step? What information does it need?</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Start a team log — document scoping decisions as you make them.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><em>You will learn:</em> Agent architecture basics; intent classification; how LLM-based routing differs from rule-based systems.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 2 — Build the Classifier</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Build a request classifier using an LLM API or a simple prompt-based approach. Test with 20 sample requests.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Define routing logic: given a classified request, which mock "service" does it route to?</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><em>You will learn:</em> Prompt engineering for classification; working with LLM APIs; measuring accuracy.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 3 — Integration &amp; Demo</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Attempt to connect your classifier to Team 3's prototype. Even a simple API call integration counts.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Run an end-to-end test: user input → classification → routing → response. Document accuracy rate and failure cases.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Show your agent pipeline at Demo Day alongside Team 3's prototype.</span></div>
+      </div>
+      <div class="week-row">
+        <p class="week-title">Week 4 — Final Report (Team 4 Owns This)</p>
+        <div class="task-item"><span class="task-dash">—</span><span>Write your own <strong style="font-weight:600;">"Agent &amp; Workflow"</strong> section: architecture, accuracy results, what would need to change at scale.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span><strong style="font-weight:600;">Compile the full Feasibility Report</strong> by assembling sections received from Teams 1, 2, and 3 by Day 20. Ensure consistency and clarity across all sections.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Write the Phase 2 Roadmap: recommended use case, proposed tech stack, team structure, timeline estimate.</span></div>
+        <div class="task-item"><span class="task-dash">—</span><span>Present findings at the Final Showcase (Day 22). This is the primary deliverable of the entire sprint.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-strip">
+    <span class="kpi-label">KPI</span>
+    <span class="kpi-text">At least 1 request classification agent tested end-to-end by Day 17. Accuracy rate documented with real examples. Complete Feasibility Report + Phase 2 Roadmap compiled and presented at Final Showcase (Day 22).</span>
+  </div>
+</div>
+
+<!-- ── MEETING SCHEDULE ── -->
+<p class="section-label">Meeting Schedule</p>
+
+<table class="mtg-table">
+  <thead>
+    <tr>
+      <th>When</th>
+      <th>Meeting</th>
+      <th>Format</th>
+      <th>Duration</th>
+      <th>Who attends</th>
+      <th>Expected outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="font-family:var(--mono);font-size:0.78rem;white-space:nowrap;">Day 1 · Mon</td>
+      <td><strong style="font-weight:600;">Kickoff</strong></td>
+      <td><span class="mtg-type mtg-all">All-Hands</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;">90 min</td>
+      <td>Everyone</td>
+      <td>Teams confirmed, leads introduced, Week 1 goals set, workspace shared</td>
+    </tr>
+    <tr>
+      <td style="font-family:var(--mono);font-size:0.78rem;white-space:nowrap;">Day 4 · Thu</td>
+      <td><strong style="font-weight:600;">Week 1 Check-in</strong></td>
+      <td><span class="mtg-type mtg-team">Team Syncs</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;">30 min each</td>
+      <td>Team leads + Main Lead</td>
+      <td>Problem definitions reviewed, hypotheses validated, blockers raised</td>
+    </tr>
+    <tr>
+      <td style="font-family:var(--mono);font-size:0.78rem;white-space:nowrap;">Day 8 · Mon</td>
+      <td><strong style="font-weight:600;">Design Review</strong></td>
+      <td><span class="mtg-type mtg-all">All-Hands</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;">60 min</td>
+      <td>Everyone</td>
+      <td>Teams 1 &amp; 2 present findings. Conversation flows reviewed. Experiment plans approved.</td>
+    </tr>
+    <tr>
+      <td style="font-family:var(--mono);font-size:0.78rem;white-space:nowrap;">Day 15 · Mon</td>
+      <td><strong style="font-weight:600;">Demo Day</strong></td>
+      <td><span class="mtg-type mtg-all">All-Hands</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;">90 min</td>
+      <td>Everyone</td>
+      <td>Teams 3 &amp; 4 demo live prototypes. Structured feedback collected. Feasibility discussion begins.</td>
+    </tr>
+    <tr>
+      <td style="font-family:var(--mono);font-size:0.78rem;white-space:nowrap;">Day 18 · Thu</td>
+      <td><strong style="font-weight:600;">Week 3 Debrief</strong></td>
+      <td><span class="mtg-type mtg-team">Team Syncs</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;">30 min each</td>
+      <td>Team leads + Main Lead</td>
+      <td>Blockers resolved. All teams align on what goes into the final report.</td>
+    </tr>
+    <tr>
+      <td style="font-family:var(--mono);font-size:0.78rem;white-space:nowrap;">Day 22 · Mon</td>
+      <td><strong style="font-weight:600;">Final Showcase</strong></td>
+      <td><span class="mtg-type mtg-all">All-Hands</span></td>
+      <td style="font-family:var(--mono);font-size:0.78rem;">120 min</td>
+      <td>Everyone</td>
+      <td>Team 4 presents Feasibility Report &amp; Phase 2 Roadmap. Lessons learned shared. Sprint closed.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ── TOOLS ── -->
+<p class="section-label">Suggested Tools by Team</p>
+
+<div class="tools-grid">
+  <div class="tool-item">
+    <div class="tool-badge">Team 1</div>
+    <div class="tool-name">Google Forms / Typeform</div>
+    <div class="tool-use">User research surveys and structured interviews</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">Team 1</div>
+    <div class="tool-name">Miro / FigJam</div>
+    <div class="tool-use">User journey mapping and whiteboarding</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">Team 2</div>
+    <div class="tool-name">Whimsical / Lucidchart</div>
+    <div class="tool-use">Dialogue trees and conversation flow diagrams</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">Team 3</div>
+    <div class="tool-name">Voiceflow / Botpress</div>
+    <div class="tool-use">No-code / low-code chatbot prototyping</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">Team 3</div>
+    <div class="tool-name">Streamlit + OpenAI API</div>
+    <div class="tool-use">Code-based chat interface (Python, beginner-friendly)</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">Team 4</div>
+    <div class="tool-name">LangChain / LlamaIndex</div>
+    <div class="tool-use">Agent pipeline and request routing experiments</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">Team 4</div>
+    <div class="tool-name">OpenAI API / Anthropic API</div>
+    <div class="tool-use">LLM-based classification and response generation</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">All Teams</div>
+    <div class="tool-name">Notion / Google Docs</div>
+    <div class="tool-use">Each team's own documentation log and deliverable writing</div>
+  </div>
+  <div class="tool-item">
+    <div class="tool-badge">All Teams</div>
+    <div class="tool-name">GitHub</div>
+    <div class="tool-use">Code sharing, version control, and collaboration</div>
+  </div>
+</div>
+
+<!-- ── EXPECTATIONS ── -->
+<p class="section-label">What Is Expected From Every Participant</p>
+
+<ul class="exp-list">
+  <li>
+    <div>
+      <strong>Show up to your team meetings.</strong>
+      <span>Attend all scheduled All-Hands and Team Sync calls. If you cannot attend, notify your Team Lead at least 12 hours in advance and send a written update instead.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Submit your deliverable every week.</strong>
+      <span>Each team has one primary deliverable per week. It does not need to be perfect — it needs to be done. A rough draft submitted on time is worth more than a polished document submitted late.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Experiment, don't over-engineer.</strong>
+      <span>This sprint is about learning what works, not building a production product. Try things, document what happens, and share what you find — including failures. A failed experiment that is well-documented is a valuable contribution.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Communicate early when you're blocked.</strong>
+      <span>If you are stuck on something for more than a day, tell your Team Lead. Do not wait until the weekly meeting. Blockers that are raised early can almost always be resolved quickly.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Bring your context and perspective.</strong>
+      <span>Participants from Bhutan, Nepal, India, Egypt, Nigeria, and elsewhere bring direct knowledge of what public services look like in their country. That context is an asset — share it actively in your team discussions and in the documentation.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Document as you go, not at the end.</strong>
+      <span>Every team is responsible for their own documentation. Keep short running notes — what you tried, what happened, what you decided. One paragraph per session is enough. Your team's notes become the raw material for your section of the Feasibility Report, so don't leave it to Week 4.</span>
+    </div>
+  </li>
+</ul>
+
+<div class="notice" style="margin-top:2rem;">
+  <strong>Questions and escalations</strong>
+  For anything your Team Lead cannot resolve, contact the project leads directly via the group channel. For documentation questions, reach out to your own Team Lead — each team owns their own docs.
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  Project Sprint · April 2026 · Internal Participant Reference · v3.0
+  <br>This document is for participant use only. Do not distribute externally.
+</footer>
+
+</body>
+</html>

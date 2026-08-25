@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debanjan Mondal — Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #1a1d24;
+      --text: #e8e9ec;
+      --muted: #9aa0ab;
+      --accent: #7c9cff;
+      --border: #2a2e38;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    header h1 { margin: 0 0 0.25rem; font-size: 2rem; }
+    header p { margin: 0; color: var(--muted); }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 3rem;
+    }
+    h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 2rem 0 1rem;
+    }
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .project h3 { margin: 0 0 0.5rem; font-size: 1.3rem; }
+    .project p.desc { margin: 0 0 1rem; color: var(--text); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .tag {
+      background: #262a34;
+      color: var(--muted);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-right: 1rem;
+    }
+    .links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Debanjan Mondal</h1>
+    <p>Projects &amp; work</p>
+  </header>
+  <main>
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>AIG CompassionBot</h3>
+      <p class="desc">
+        A mental-health support chatbot built on a local LLM pipeline with retrieval-augmented
+        generation — documents are chunked, embedded, and stored in a vector DB so the bot can
+        ground its responses in reference material rather than hallucinating.
+      </p>
+      <div class="tags">
+        <span class="tag">LangChain</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">ChromaDB</span>
+        <span class="tag">Sentence Transformers</span>
+        <span class="tag">RAG</span>
+      </div>
+      <div class="links">
+        <a href="CompassionBot/" target="_blank" rel="noopener">View project →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Omdena — Bhutan Voice-First Assistant</h3>
+      <p class="desc">
+        A voice-first, multi-agent G2C assistant for Bhutan that lets citizens ask about
+        permits, health, and business services in Dzongkha by voice. Led intent
+        classification: built a multi-backend classifier (Gemini / local LM Studio /
+        keyword fallback), confidence-gated human escalation, and an expanded knowledge
+        base for permit and service queries.
+      </p>
+      <div class="tags">
+        <span class="tag">LangChain</span>
+        <span class="tag">Multi-Agent</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Intent Classification</span>
+        <span class="tag">Speech-to-Text</span>
+      </div>
+      <div class="links">
+        <a href="Omdena-BhutanVoiceFirstAssistant/" target="_blank" rel="noopener">View project →</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
