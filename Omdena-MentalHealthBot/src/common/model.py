@@ -4,7 +4,7 @@ from langchain_google_genai import (ChatGoogleGenerativeAI,
                                     GoogleGenerativeAIEmbeddings)
 
 if "GOOGLE_API_KEY" not in os.environ:
-    os.environ["GOOGLE_API_KEY"] = "REDACTED_GOOGLE_API_KEY"
+    raise RuntimeError("Set GOOGLE_API_KEY in your environment before running this.")
 
 
 def load_language_model():
