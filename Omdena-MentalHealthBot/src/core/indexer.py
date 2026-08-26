@@ -36,8 +36,8 @@ class IndexData:
 
 
 if __name__ == "__main__":
-    document_path = "./sandbox/dataset/PDFs/DepressionGuide-web.pdf"
-    vectorstore_path = "./sandbox/database/PDFs/"
+    document_path = "../artifacts/dataset/PDFs/DepressionGuide-web.pdf"
+    vectorstore_path = "../artifacts/database/PDFs/"
 
     index_data = IndexData()
     index_data.load_document(document_path)

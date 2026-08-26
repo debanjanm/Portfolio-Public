@@ -1,14 +1,5 @@
-import os
-
 import torch
-# Load model directly
-from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
-                          DistilBertForSequenceClassification)
-
-# # Get the directory path of the current script
-# script_dir = os.path.dirname(os.path.abspath(__file__))
-# model = DistilBertForSequenceClassification.from_pretrained("model.safetensors")
-
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained(
     "models/Trained-DistilBertForSequenceClassification_6h_768dim"
@@ -31,7 +22,7 @@ def sentiment_class(summarized_text):
     """
     inputs = tokenizer(
         summarized_text, padding=True, truncation=True, return_tensors="pt"
-    ).to("cuda")
+    ).to(device)
     outputs = model(**inputs)
 
     predictions = torch.nn.functional.softmax(outputs.logits, dim=-1)
@@ -40,8 +31,8 @@ def sentiment_class(summarized_text):
 
 
 def pattern_classification():
-    return result
+    raise NotImplementedError
 
 
 def corelation_analysis():
-    return result
+    raise NotImplementedError

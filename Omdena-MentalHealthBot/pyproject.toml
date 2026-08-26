@@ -1,7 +1,7 @@
 [project]
-name = "e2e-compassionbot"
+name = "mental-health-chatbot"
 version = "0.1.0"
-description = "Add your description here"
+description = "RAG-based mental health support chatbot"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

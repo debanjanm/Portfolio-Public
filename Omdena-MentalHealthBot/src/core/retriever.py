@@ -22,9 +22,9 @@ class RetrieveQuery:
 
 
 if __name__ == "__main__":
-    vectorstore_path = "./sandbox/database/PDFs/faiss_index"
+    vectorstore_path = "../artifacts/database/PDFs/"
 
-    retrieve_query = RetrieveQuery()
+    retrieve_query = RetrieveQuery(load_embedding_model())
     retrieve_query.load_vectorstore(vectorstore_path)
     query = "I am Depressed"
     results = retrieve_query.retrieve_context(query)

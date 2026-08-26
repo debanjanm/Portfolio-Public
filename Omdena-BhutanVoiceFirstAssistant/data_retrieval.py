@@ -2161,8 +2161,7 @@ class ConversationalRAGEngine:
         intent_id   = cap_node.next_node if cap_node else cap_id
         session.current_node_id = intent_id
         # Combine CAPABILITY_INTRO + INTENT_PROMPT in single message
-        intent_node = self.flow.get(intent_id)
-        combined_text  = (cap_node.bot_text if cap_node else "") 
+        combined_text  = (cap_node.bot_text if cap_node else "")
         combined_voice = (cap_node.voice_text if cap_node else "")
         return TurnResponse(
             bot_text    = combined_text,
@@ -2650,9 +2649,6 @@ def run_demo():
                 print(f"[SESSION CLOSED — Ref: {session.session_id}]")
                 break
 
-
-#if __name__ == "__main__":
-    #run_demo()
 
 if __name__ == "__main__":
     engine = ConversationalRAGEngine.build(use_dpr=False)

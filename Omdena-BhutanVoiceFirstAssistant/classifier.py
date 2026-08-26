@@ -31,8 +31,10 @@
 
 # ═══════════════════════════════════════════════════════════════════
 # 🔑  STEP 1a — GEMINI API KEY (only needed if CLASSIFIER_BACKEND = "gemini")
+#     Set the GEMINI_API_KEY environment variable — do not hardcode it here.
 # ═══════════════════════════════════════════════════════════════════
-GEMINI_API_KEY    = "PASTE_YOUR_GEMINI_KEY_HERE"
+import os
+GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY", "")
 GEMINI_MODEL_NAME = "gemini-2.5-flash"   # ← swap for any Gemini model
 
 # ═══════════════════════════════════════════════════════════════════
@@ -753,12 +755,9 @@ DEMO_SCENARIOS = [
 ]
 
 
-def make_classifier() -> BaseClassifier:
-    """
-    Reads CLASSIFIER_BACKEND to pick which classifier to instantiate.
-    Change CLASSIFIER_BACKEND at the top — no edits needed here.
-    """
-    backend = CLASSIFIER_BACKEND.strip().lower()
+def make_classifier(backend: str = CLASSIFIER_BACKEND) -> BaseClassifier:
+    """Picks which classifier to instantiate: "gemini", "lmstudio", or "keyword"."""
+    backend = backend.strip().lower()
 
     if backend == "lmstudio":
         if not OPENAI_AVAILABLE:
@@ -773,7 +772,7 @@ def make_classifier() -> BaseClassifier:
             print("⚠  google-generativeai missing. Run: !pip install google-generativeai")
             print("⚠  Falling back to KeywordClassifier.\n")
             return KeywordClassifier()
-        if not GEMINI_API_KEY or "PASTE" in GEMINI_API_KEY:
+        if not GEMINI_API_KEY:
             print("⚠  GEMINI_API_KEY not set. Falling back to KeywordClassifier.\n")
             return KeywordClassifier()
         print(f"☁  GeminiClassifier → model={GEMINI_MODEL_NAME}\n")
@@ -784,9 +783,9 @@ def make_classifier() -> BaseClassifier:
     return KeywordClassifier()
 
 
-def run_demo() -> None:
+def run_demo(backend: str = CLASSIFIER_BACKEND) -> None:
     """Run the pre-defined sample scenarios."""
-    classifier = make_classifier()
+    classifier = make_classifier(backend)
     engine     = ConversationEngine()
     print("=" * 72)
     print(" Bhutan Voice-First Public Service Assistant — Demo with Classifier")
@@ -798,9 +797,9 @@ def run_demo() -> None:
         print_turn(user_text, r, c)
 
 
-def run_interactive() -> None:
+def run_interactive(backend: str = CLASSIFIER_BACKEND) -> None:
     """Chat with the assistant. Type 'exit' to quit."""
-    classifier = make_classifier()
+    classifier = make_classifier(backend)
     engine     = ConversationEngine()
     print("=" * 72)
     print(" Bhutan Voice-First Public Service Assistant")
@@ -825,5 +824,16 @@ def run_interactive() -> None:
 
 
 if __name__ == "__main__":
-    # run_interactive()
-    run_demo()
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Bhutan public-service request classifier")
+    parser.add_argument("--backend", choices=["gemini", "lmstudio", "keyword"],
+                         default=CLASSIFIER_BACKEND, help="classification backend to use")
+    parser.add_argument("--mode", choices=["demo", "interactive"], default="demo",
+                         help="run the 6 sample scenarios, or chat interactively")
+    args = parser.parse_args()
+
+    if args.mode == "interactive":
+        run_interactive(args.backend)
+    else:
+        run_demo(args.backend)
