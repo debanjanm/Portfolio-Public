@@ -20,7 +20,7 @@ Gemini generator (src/core/generator.py)  ← per-user/conversation message hist
 Response
 ```
 
-`src/pipeline/flow.py` (`MentalChatbot`) wires retriever → prompt → generator together. `src/core/indexer.py` builds the FAISS index from source PDFs; `src/core/categorizer.py` is a standalone DistilBERT sentiment classifier not yet wired into the main pipeline.
+`src/pipeline/flow.py` (`MentalChatbot`) wires retriever → prompt → generator together. `src/core/indexer.py` builds the FAISS index from source PDFs.
 
 ## Setup
 
@@ -57,7 +57,7 @@ streamlit run frontend.py
 ```
 src/
   common/    config + model loading
-  core/      retriever, generator, prompter, indexer, categorizer, summarizer
+  core/      retriever, generator, prompter, indexer
   pipeline/  MentalChatbot orchestration
   utils/     chat history helpers
 docs/        sprint presentations and background reading
@@ -67,4 +67,4 @@ artifacts/   PDF source data, FAISS index, prompt templates, finetuned model
 
 ## Status
 
-Sprint deliverable — retrieval + generation pipeline works end to end; sentiment classification (`categorizer.py`) is standalone and not yet integrated into the conversation flow.
+Sprint deliverable — retrieval + generation pipeline works end to end.
